@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RAHUL — Rajanya Tahu Bulat</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0b;
+            color: white;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #ffd21c;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffd21c;
+        }
+
+        .nav-button {
+            background: #ffd21c;
+            color: #111;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            background: white;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8% 70px;
+            background:
+                radial-gradient(circle at 75% 45%, rgba(255,210,28,0.15), transparent 30%),
+                linear-gradient(120deg, #080808, #151515);
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .small-title {
+            color: #ffd21c;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 9vw, 110px);
+            line-height: 0.9;
+            font-weight: 1000;
+            letter-spacing: -5px;
+        }
+
+        .hero h1 span {
+            color: #ffd21c;
+        }
+
+        .hero p {
+            margin-top: 30px;
+            color: #c8c8c8;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 570px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 16px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #ffd21c;
+            color: #111;
+        }
+
+        .btn-secondary {
+            border: 1px solid #555;
+            color: white;
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-secondary:hover {
+            border-color: #ffd21c;
+            color: #ffd21c;
+        }
+
+        /* PRODUCTS */
+        .section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title small {
+            color: #ffd21c;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            margin-top: 10px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: #151515;
+            border: 1px solid #292929;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: #ffd21c;
+        }
+
+        .product-image {
+            height: 230px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #292929, #111);
+            font-size: 90px;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            color: #ffd21c;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #111;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-box {
+            height: 450px;
+            background:
+                radial-gradient(circle, rgba(255,210,28,0.25), transparent 35%),
+                #191919;
+            border: 1px solid #292929;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .about-box div {
+            text-align: center;
+        }
+
+        .about-box .crown {
+            font-size: 90px;
+        }
+
+        .about-box h3 {
+            font-size: 35px;
+            color: #ffd21c;
+        }
+
+        .about-text small {
+            color: #ffd21c;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .about-text h2 {
+            font-size: 48px;
+            margin: 15px 0 25px;
+        }
+
+        .about-text p {
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 110px 8%;
+            background: #ffd21c;
+            color: #111;
+        }
+
+        .cta h2 {
+            font-size: clamp(40px, 6vw, 70px);
+            font-weight: 1000;
+        }
+
+        .cta p {
+            margin: 20px auto 30px;
+            max-width: 600px;
+            font-size: 18px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 35px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: #111;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px 8%;
+            background: #070707;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer h3 {
+            color: #ffd21c;
+            font-size: 25px;
+        }
+
+        footer p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .socials a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            color: #ffd21c;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 6% 70px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-box {
+                height: 300px;
+            }
+
+            .section {
+                padding: 80px 6%;
+            }
+
+            .section-title h2 {
+                font-size: 38px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            RAHUL<span>.</span>
+        </div>
+
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#menu">MENU</a></li>
+            <li><a href="#about">TENTANG</a></li>
+            <li><a href="#contact">KONTAK</a></li>
+        </ul>
+
+        <a href="#menu" class="nav-button">PESAN</a>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                STREET FOOD • INDONESIA
+            </div>
+
+            <h1>
+                RAHUL<br>
+                <span>TAHU BULAT.</span>
+            </h1>
+
+            <p>
+                Tahu bulat yang renyah di luar, lembut di dalam.
+                Dibuat untuk kamu yang suka jajanan sederhana
+                dengan rasa yang luar biasa.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#menu" class="btn-primary">
+                    LIHAT MENU
+                </a>
+
+                <a href="#about" class="btn-secondary">
+                    TENTANG RAHUL
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU -->
+    <section class="section" id="menu">
+
+        <div class="section-title">
+            <small>OUR MENU</small>
+            <h2>PILIHAN RAHUL</h2>
+        </div>
+
+        <div class="products">
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    🧆
+                </div>
+
+                <div class="product-info">
+                    <h3>Tahu Bulat Original</h3>
+
+                    <p>
+                        Tahu bulat gurih dengan rasa klasik
+                        yang cocok buat kapan aja.
+                    </p>
+
+                    <div class="price">
+                        Rp5.000
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    🌶️
+                </div>
+
+                <div class="product-info">
+                    <h3>Tahu Bulat Pedas</h3>
+
+                    <p>
+                        Perpaduan tahu bulat renyah
+                        dengan sensasi pedas.
+                    </p>
+
+                    <div class="price">
+                        Rp7.000
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    👑
+                </div>
+
+                <div class="product-info">
+                    <h3>Rahul Special</h3>
+
+                    <p>
+                        Menu spesial Rahul dengan bumbu
+                        khas yang menjadi favorit.
+                    </p>
+
+                    <div class="price">
+                        Rp10.000
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+
+        <div class="about-box">
+
+            <div>
+                <div class="crown">👑</div>
+                <h3>RAHUL</h3>
+                <p>RAJANYA TAHU BULAT</p>
+            </div>
+
+        </div>
+
+
+        <div class="about-text">
+
+            <small>ABOUT US</small>
+
+            <h2>BUKAN CUMA TAHU BULAT.</h2>
+
+            <p>
+                Rahul hadir membawa tahu bulat dengan konsep
+                yang sederhana, rasa yang nikmat, dan harga
+                yang tetap ramah di kantong.
+            </p>
+
+            <br>
+
+            <p>
+                Dari jajanan pinggir jalan menjadi sebuah brand
+                yang punya karakter sendiri. Karena bagi Rahul,
+                tahu bulat bukan sekadar makanan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+
+        <h2>SIAP MAKAN TAHU BULAT?</h2>
+
+        <p>
+            Jangan cuma lihat-lihat. Rasakan sendiri
+            kenapa Rahul disebut Rajanya Tahu Bulat.
+        </p>
+
+        <a href="#" class="cta-button">
+            PESAN SEKARANG
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div>
+            <h3>RAHUL.</h3>
+            <p>Rajanya Tahu Bulat</p>
+        </div>
+
+        <div class="socials">
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">TikTok</a>
+            <a href="#" target="_blank">WhatsApp</a>
+        </div>
+
+        <p>
+            © 2026 Rahul. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
